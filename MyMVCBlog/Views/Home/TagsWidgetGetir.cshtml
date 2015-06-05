@@ -1,0 +1,16 @@
+﻿@{
+    Layout = null;
+}
+@model IEnumerable<MyMVCBlog.Models.Tag>
+
+
+<div class="widget blog-tags">
+    <h5>Tags</h5>
+    <ul> 
+        @foreach (var item in Model)
+        {
+            <li><a href="/Tag/Index/@item.ID" class="btn btn-default">@item.Name</a></li>
+        }
+        
+    </ul>
+</div>

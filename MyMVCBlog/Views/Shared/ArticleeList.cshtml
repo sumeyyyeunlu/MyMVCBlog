@@ -1,0 +1,46 @@
+﻿@{
+    Layout = null;
+}
+@model IEnumerable<MyMVCBlog.Models.Articlee>
+
+@helper Kisalt(String metin){
+    if(metin.Length > 300){
+        <p>@metin.Substring(0,300)</p>
+    }
+    else
+    {
+        <p> @metin </p>
+    }
+    }
+
+@foreach(var makale in Model){
+    <article class="blog-post">
+        <header>
+            <h2>
+                <a href="/Articlee/Detay/@makale.ID">@makale.Title</a>
+            </h2>
+                                    
+                                    <ul class="info">
+                                        <li><a href="/Category/Index/@makale.CategoryID">{ @makale.Category.Name }</a></li>
+                                        <li><a href="/Articlee/ListAccordingToDate?year=@makale.DateTime.Year&month=@makale.DateTime.Month">{ @makale.DateTime.ToString("MMMM yyyy") }</a></li>
+                                        <li><a href="/Writer/Index/@makale.WriterID">{ @makale.Writer.Name  @makale.Writer.Surname}</a></li>
+                                        <li>{ Comments: <a href="#">@makale.Comments.Count</a> }</li>
+                                        <li>{ Like: @makale.Like }</li>
+                                        <li>{ Display: @makale.SeenTimes }</li>
+                                    </ul>
+                                </header>
+                                <div class="content">
+                                    <figure>
+                                        <a href="/Article/Detay/@makale.ID">
+                                            <img src="@makale.Image.MideumImageWay" alt=""/>
+                                        </a>
+                                    </figure>
+                                    <div class="text">
+                                        @Kisalt(makale.Content);
+                                        
+                                    </div>
+                                    <a href="/Articlee/Detay/@makale.ID" class="btn btn-default">Read</a>
+                                </div>
+                            </article>
+
+}

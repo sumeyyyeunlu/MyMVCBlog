@@ -1,0 +1,16 @@
+﻿@model IEnumerable<MyMVCBlog.Models.Category>
+
+@{
+    Layout = null;
+}
+<div class="widget categories">
+    <h5>Categories</h5>
+    <ul>
+        @foreach (var kat in Model)
+        {
+            <li><a href="/Category/Index/@kat.ID">@kat.Name (@kat.Articlees.Count) </a></li>
+        }
+        
+        
+    </ul>
+</div>

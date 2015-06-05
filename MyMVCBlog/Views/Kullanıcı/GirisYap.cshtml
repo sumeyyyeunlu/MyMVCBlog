@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.title = "Giriş Yap";
+}
+
+<h2>GirişYap</h2>
+
+@using (Html.BeginForm())
+{
+    
+   <table>
+       <tr>
+           <td>Kullanıcı Adı</td>
+           <td>
+               <input type="text" name="kullaniciAdi" value="" required>
+           </td>
+       </tr>
+
+       <tr>
+           <td>Parola</td>
+           <td>
+               <input type="text" name="parola" value="" required>
+           </td>
+       </tr>
+       <tr>
+           <td></td>
+           <td>
+               <input class="form-control" type="submit" name="btnKayıtOl" value="Giriş" required>
+           </td>
+       </tr>
+    </table>
+}

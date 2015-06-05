@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "MakaleYaz";
+}
+
+
+<div class="tabs-top">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#top-tab1" data-toggle="tab">Metin</a></li>
+        <li><a href="#top-tab2" data-toggle="tab">Resim  Galerisi</a></li>
+
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="top-tab1">
+
+            @using (Html.BeginForm("MakaleYaz", "Yonetim", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <table>
+                    <tr>
+                        <td>Baslık</td>
+                        <td><input clas="form-control" type="text" name="Title" value="" placeholder="Baslık Giriniz" /></td>
+                    </tr>
+                    <tr>
+                        <td>Kategori</td>
+                        <td>
+                            <select clas="form-control" name="CategoryID">
+
+                                @foreach (var category in ViewBag.Categories)
+                                {
+
+                                    <option title="@category.Name" value="@category.ID"></option>
+                                }
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Etiketler</td>
+                        <td><input clas="form-control" type="text" name="etiketler" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td>Resim</td>
+                        <td>
+                            <input type="file" name="Resim" value="" />
+                    </tr>
+                    <tr>
+
+                        <td>Icerik</td>
+                        <td>
+                            <textarea name="Icerik" placeholder="Makale içeriğini giriniz" cols="20" rows="10" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input class="form-control" type="submit" name="btnEkle" value="Kaydet" />
+                        </td>
+                    </tr>
+
+                </table>
+
+
+            }
+        </div>
+        <div class="tab-pane" id="top-tab2">
+            <figure>
+                <img src="~/Content/HTML Copy/content/doga.jpg" alt="" />
+            </figure>
+            <h4>
+                Doğa
+
+            </h4>
+            <div class="tab-text">
+                Nature is a prominent interdisciplinary scientific journal. It was first published on 4 November 1869.[1] It was ranked the world's most cited scientific journal by the Science Edition of the 2010 Journal Citation Reports, is ascribed an impact factor of approximately 42.4, and is widely regarded as one of the few remaining academic journals that publishes original research across a wide range of scientific fields.[2] Nature claims an online readership of about 3 million unique readers per month
+            </div>
+        </div>
+        <div class="tab-pane" id="top-tab3">
+            <figure>
+                <img src="~/Content/HTML Copy/content/bıl.jpg" alt="" />
+            </figure>
+            <h4>
+                MVC<br />
+                Model View Controller
+            </h4>
+            <div class="tab-text">
+                Model–view–controller (MVC) is a software architectural pattern for implementing user interfaces. It divides a given software application into three interconnected parts, so as to separate internal representations of information from the ways that information is presented to or accepted from the user
+            </div>
+        </div>
+       
+            
+        </div>
+    </div>
+

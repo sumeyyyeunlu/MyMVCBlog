@@ -1,0 +1,56 @@
+﻿@{
+    Layout = null;
+}
+<div class="widget posts">
+    <h5>Articles</h5>
+    <div class="widget-tabs">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#popular" data-toggle="tab">Popular</a></li>
+            <li><span>/</span></li>
+            <li><a href="#fresh" data-toggle="tab">Fresh</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="popular">
+                <ul>
+                    @{
+                        MyMVCBlog.Models.Articlee m =new  MyMVCBlog.Models.Articlee();
+                  }
+                    @foreach (var pop in ViewBag.Popular){
+                       
+                    <li>
+                        <figure>
+                            <a href="#">
+                                <img src="@pop.Image.SmallImageWay" alt="" />
+                            </a>
+                        </figure>
+                        <div class="text">
+                            <a href="/Articlee/Detay/@pop.ID">@pop.Title</a>
+                            <a href="/Category/Index/@pop.CategoryID" class="category">{ @pop.Category.Name }</a>
+                        </div>
+                    </li>
+                    }
+                   
+                </ul>
+            </div>
+            <div class="tab-pane" id="fresh">
+                <ul>
+                    @foreach(var son in ViewBag.Fresh){
+                        
+                    
+                    <li>
+                        <figure>
+                            <a href="/Articlee/Detay/@son.ID">
+                                <img src="@son.Image.SmallImageWay" alt="" />
+                            </a>
+                        </figure>
+                        <div class="text">
+                            <a href="/Articlee/Detay/@son.ID">@son.Title</a>
+                            <a href="/Category/Index/@son.CategoryID" class="category">{ @son.Category.Name }</a>
+                        </div>
+                    </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

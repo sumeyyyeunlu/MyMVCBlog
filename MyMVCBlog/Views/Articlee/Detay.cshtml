@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "Detay";
+}
+@model MyMVCBlog.Models.Articlee
+
+
+<article class="blog-post">
+    <header>
+        <h2>
+            <a href="/Articlee/Detay/Model.ID">@Model.Title </a>
+        </h2>
+        <ul class="info">
+            <li><a href="/Category/Index/@Model.CategoryID">{ @Model.Category.Name }</a></li>
+            <li><a href="/Articlee/TariheGoreListe?year=@Model.DateTime.Year&month=@Model.DateTime.Month">{ @Model.DateTime.ToString("MMMM yyyy")}</a></li>
+            <li><a href="/Writer/Index/@Model.WriterID">{ @Model.Writer.Name  @Model.Writer.Surname }</a></li>
+            <li>{ Comments: <a href="#Comment">@Model.Comments.Count</a> }</li>
+        </ul>
+    </header>
+    <div class="text-editor">
+        @Model.Content
+        <div class="author-wrap">
+            <div class="author">
+                <figure>
+                    <a href="/Writer/Inedx/@Model.WriterID">
+                        <img src="@Model.Writer.Image.SmallImageWay" alt="#" />
+                    </a>
+                </figure>
+                <div class="name">@Model.Writer.Name  @Model.Writer.Surname</div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+< a id="Comment"/a>
+<div class="comments">
+    <h3>@Model.Comments.Count Comments
+    </h3>
+    <ul>
+        @foreach (var yorum in Model.Comments)
+        {
+            <li class="comment">
+
+                <div class="user">
+                  
+                    <figure>
+                        <a href="#">
+                            <img src="@yorum.Writer.Image.SmallImageWay" alt="" />
+                        </a>
+                    </figure>
+                    <div class="name text-center">
+                        <a href="#">@yorum.Writer.Name  @yorum.Writer.Surname</a>
+                    </div>
+                </div>
+                <div class="comment-box">
+                    <div class="info">
+                        <div class="time-ago">@yorum.AddedDate</div>
+
+                    </div>
+                    <div class="text">
+                        @yorum.Content
+                    </div>
+                    
+                </div>
+            </li>
+        }            
+        </ul>
+        
+ 
+</div>
+@{
+    MyMVCBlog.Models.Writer k = new MyMVCBlog.Models.Writer();
+}
+@if (ViewBag.writer1 != null)
+{ 
+    
+    <div class="write-comment">
+        <h3>Write a comment</h3>
+        <div class="user">
+            <figure>
+                <a href="#">
+                    
+                    <img src="@ViewBag.Image.SmallImageWay" alt="" />
+                </a>
+            </figure>
+            <div class="name text-center">
+                <a href="#">@ViewBag.Writer.Name @ViewBag.Writer.Surname</a>
+            </div>
+        </div>
+        <div class="textarea-wrap">
+            <form action="/Articlee/YorumYaz" method="post">
+                <input type="hidden" name="WriterID" value="@Model.ID" />
+                <input type="hidden" name="ArticleID" value="@ViewBag.Writer.ID" />
+                <textarea name="Content"></textarea>
+                <button type="submit" class="send">Send</button>
+            </form>
+        </div>
+        <hr>
+    </div>}
+
